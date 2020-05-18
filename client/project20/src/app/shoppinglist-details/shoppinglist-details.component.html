@@ -1,0 +1,47 @@
+<div class="ui placeholder segment">
+  <div class="ui two column very relaxed stackable grid">
+    <div class="column" *ngIf="shoppinglist">
+
+      <div>
+        <div class="middle aligned column">
+          <h1 class="ui header ">{{shoppinglist.title}}</h1>
+          <h3><i class="cart icon"></i>Summe: {{shoppinglist.finalSum}} €</h3>
+          <h3><i class="calendar icon"></i>Fälligkeit: {{shoppinglist.dueDate | date:'dd.MM.yyyy'}}</h3>
+        </div>
+        <h2>Einkausliste</h2>
+      </div>
+
+      <span *ngFor="let item of shoppinglist.shoppingitems">
+        <table class="ui definition table">
+         <tbody>
+           <tr>
+             <td class="five wide column">Name</td>
+             <td>{{item.name}}</td>
+           </tr>
+           <tr>
+             <td class="five wide column">Anzahl</td>
+             <td>{{item.amount}}</td>
+          </tr>
+          <tr>
+            <td class="five wide column">Maximaler Preis</td>
+            <td>{{item.maxPrice}}</td>
+          </tr>
+        </tbody>
+      </table>
+  <span></span>
+</span>
+    </div>
+  </div>
+</div>
+
+<a [routerLink]="'/shoppinglists'" class="ui teal labeled icon button"><i class="angle left icon"></i>zurück</a>
+
+<button *ngIf="authService.isLoggedIn()" class="ui teal labeled icon button" (click)="removeShoppinglist()" ><i class="trash icon"></i>
+  löschen
+</button>
+
+<a *ngIf="authService.isLoggedIn()" class="ui olive labeled icon button"
+   [routerLink]="['../../admin', shoppinglist?.id]"><i class="write icon"></i>bearbeiten</a>
+
+
+

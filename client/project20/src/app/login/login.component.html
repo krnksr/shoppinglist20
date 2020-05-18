@@ -1,0 +1,36 @@
+<div *ngIf="!isLoggedIn()">
+  <h1>Login</h1>
+  <form (ngSubmit)="login()" [formGroup]="loginForm"
+        class="ui large form">
+    <div class="field">
+      <label>E-Mail</label>
+      <input formControlName="username" id="username" type="email">
+      <div *ngIf="loginForm.get('username').invalid && (loginForm.get('username').dirty ||
+          loginForm.get('username').touched) &&
+          loginForm.get('username').hasError('required')" class="ui negative message">
+        Benutzername ist verpflichtend </div>
+
+      <div *ngIf="loginForm.get('username').invalid &&(loginForm.get('username').dirty ||
+          loginForm.get('username').touched) &&
+          loginForm.get('username').hasError('email')" class="ui negative message">
+        E-Mail Format überprüfen
+      </div>
+    </div>
+    <div class="field">
+      <label>Passwort</label>
+      <input formControlName="password" type="password">
+      <div *ngIf="loginForm.get('password').invalid && (loginForm.get('password').dirty ||
+        loginForm.get('password').touched)" class="ui negative message">
+        Passwort ist verpflichtend
+      </div>
+    </div>
+    <button [disabled]="loginForm.invalid" class="ui button" type="submit">Login</button>
+  </form>
+</div>
+
+<div class=" ui container center aligned" *ngIf="isLoggedIn()">
+  <div>
+    <h1>Vielen Dank für Ihre Hilfe!</h1>
+  </div>
+  <button (click)="logout()" class="ui button" type="button">Logout</button>
+</div>

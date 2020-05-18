@@ -1,0 +1,15 @@
+<div class="ui secondary pointing menu">
+  <a routerLink="home" routerLinkActive="active" class="item">Home</a>
+  <a *ngIf="isLoggedIn()"routerLink="shoppinglists" routerLinkActive="active" class="item">Meine Einkaufslisten</a>
+  <a *ngIf="isLoggedIn()" routerLink="admin" routerLinkActive="active" class="item">Neue Einkaufsliste erstellen</a>
+
+
+
+  <div class="right menu">
+    <a routerLink="login" routerLinkActive= "active"
+       class= "item" ><i class="sign-in icon"></i>{{getLoginLabel()}}</a>
+  </div>
+</div>
+
+<router-outlet></router-outlet>
+

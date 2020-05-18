@@ -1,0 +1,9 @@
+<div class="ui container center aligned">
+<h1>Willkommen</h1>
+<p>Das ist die KWM gegen Corona Web-Applikation-Login</p>
+<p>Um Ihre Einkaufslisten zu sehen, müssen Sie eingelogged sein</p>
+<a *ngIf="isLoggedIn()" routerLink="../shoppinglists" class="ui teal button"> Zu den Einkaufslisten
+</a>
+  <a *ngIf="!isLoggedIn()" routerLink="../login" class="ui teal button"> Login
+  </a>
+</div>

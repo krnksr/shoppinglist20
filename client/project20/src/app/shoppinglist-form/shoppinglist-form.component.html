@@ -1,0 +1,45 @@
+<div class="ui segment">
+<h2 class="ui dividing header">Einkaufsliste erstellen</h2>
+<form class="ui large form" [formGroup]="shoppinglistForm" (ngSubmit)="submitForm()">
+  <input type="hidden" name="id">
+  <div class="field">
+    <label>Titel</label>
+    <input formControlName="title">
+    <!--div *ngIf="errors.title" class="ui negative message">{{errors.title}}</div-->
+  </div>
+
+  <div class="field">
+    <label>Fälligkeit</label>
+    <input type="date" formControlName="dueDate">
+    <!--div *ngIf="errors.dueDate" class="ui negative message">{{errors.dueDate}}</div-->
+  </div>
+
+  <div class="field">
+    <label><h3 class="ui dividing header">Einkaufsgegenstände</h3></label>
+    <div formArrayName="shoppingitems">
+      <div class="fields" *ngFor="let control of shoppingitems?.controls; index as i; last as l"
+      [formGroupName]="i">
+        <input type="hidden" name="id">
+        <div class="nine wide field">
+          <label>Name</label>
+          <input formControlName="name">
+        </div>
+
+        <div class="field">
+          <label>Menge</label>
+          <input formControlName="amount">
+        </div>
+
+        <div class="field">
+          <label>Maximaler Preis</label>
+          <input type="number" formControlName="maxPrice">
+        </div>
+      </div>
+      <button (click)="addItemControl()" class="ui large button">+</button>
+
+    </div>
+  </div>
+
+  <button type="submit" class="ui large button" [disabled]="shoppinglistForm.invalid">speichern</button>
+</form>
+</div>
